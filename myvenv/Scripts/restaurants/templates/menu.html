@@ -1,0 +1,80 @@
+<!doctype html>
+<html>
+	<head>
+		o780
+		<title>Menu</title>
+		<meta charset='utf-8'>
+		<link rel='stylesheet'
+		href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/
+			      css/bootstrap.min.css'>
+
+		<link rel='stylesheet'
+		href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/
+			      css/bootstrap-theme.min.css'>
+		<style>
+		th{ text-align:center;}
+		div.menus{
+
+		text-align:center;
+		padding:40px 15px;
+		}
+		</style>
+	</head>
+	<body text ='white' background='https://www.colourbox.de/preview/2530112-kaffeetasse-draufsicht-auf-bambus-tabelle.jpg' >
+
+		<nav class='navbar navbar-inverse navbar-fixed-top'
+			role='navigation'>
+			<div class='container'>
+				<div class='navbar-header'>
+					<button type='button'
+						class='navbar-toggle collapsed'
+					data-toggle='collapse' data-target='#navbar'
+					aria-expanded='false' aria-controls='navbar'>
+						<span-class='sr-only'>Toggle navigation</span>
+						<span-class='icon-bar'></span>
+						<span-class='icon-bar'></span>
+						<span-class='icon-bar'></span>
+					</button>
+					<a class='navbar-brand' href='#'>Mysite</a>
+				</div>
+			</div>
+		</nav>
+
+	<div class='container'>
+		<div class='menus'>
+			<p>your position is at {{path}}</p>
+			<p>your host is at {{host}}</p>
+			<p>your fullpath is at {{fullpath}}</p>
+			<p>it is  {{secure}}</p>
+		<h2>{{restaurant.name}}</h2>
+		 {%if restaurant.food_set.all%}
+		 <p>this restaurant have {{restaurant.food_set.all|length}} foods</p>
+		 <center>
+		 <table   style="border-top:3px #FFD382 solid;border-bottom:3px #82FFFF solid;" cellpadding="10" width='300' border='0'>
+			<tr>
+				<th>food_name</th>
+				<th>price</th>
+				<th>is_Spicy</th>
+				<th>comment</th>
+			</tr>
+			{%for food in restaurant.food_set.all%}
+			<tr>
+				<td align=center>{{food.name}}</td>
+				<td align=center>{{food.price}}</td>
+				<td align=center>{{food.is_Spicy}}</td>
+				<td align=center>{{food.comment}}</td>
+			</tr>
+		{%endfor%}
+		</table>
+		</center>
+		{%else%}
+		<p>nothing to sell</p>
+		{%endif%}
+		<div>
+	</div>
+	<script src='http://ajax.googlepis.com/ajax/libs/jquery/1.11.1/jquery.min.js'></script>
+	<script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/
+			      js/bootstrap.min.js'></script>
+
+	 </body>
+</html>

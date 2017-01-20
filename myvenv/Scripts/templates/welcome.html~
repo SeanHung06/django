@@ -1,0 +1,13 @@
+<html>
+	<head>
+		<title>Welcome</title>
+	</head>
+	<body>
+		<form action='/welcome/'method='get'>
+			<label for='user_name'>your name</label>
+			<input id='user_name' type='text' name='user_name'>
+			<input type='submit' value='enter the website'>
+		</form>
+	</body>
+</html>
+
