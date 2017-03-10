@@ -6,8 +6,8 @@
 	</head>
 	<body text='white' background='https://www.colourbox.de/preview/2530112-kaffeetasse-draufsicht-auf-bambus-tabelle.jpg'>
 		<h2>{{r.name}}</h2>
-		{%if r.comments_set.all%}
-			<p>now that we have {{r.comments_set.all|length}} comment</p>
+		{%if r.comment_set.all%}
+			<p>now that we have {{r.comment_set.all|length}} comment</p>
 
 			<center>
 			<table>
@@ -16,7 +16,7 @@
 					<th>time</th>
 					<th>comments</th>
 				</tr>
-			{%for c in r.comments_set.all%}
+			{%for c in r.comment_set.all%}
 			 <tr>
 				 <td>{{c.visitor}}</td>
 				 <td>{{c.date_time|date:'F j,Y'}}</td>
@@ -28,22 +28,29 @@
 		{%else%}
 			<p>no comment</p>
 		{%endif%}
-	
+			
 		<br /><br />
+		
+		{%for e in errors%}
+		<p style="color:red;">{{e}}</p>
+		{%endfor%}
 		<form action='' method='post'>{% csrf_token %}
 			<center>
 			<table>
 				<tr>
 					<td><label for='visitor'> commentor:</label></td>
-					<td><input id='visitor' type='text' name='visitor'></td>
+					<td><input id='visitor' type='text' name='visitor'
+					    value='{{visitor}}'></td>
 				</tr>
 				<tr>
 					<td><label for='email'> email:</label></td>
-					<td><input id='email' type='text' name='email'></td>
+					<td><input id='email' type='text' name='email'
+					    value='{{visitor}}'></td>
 				</tr>
 				<tr>
 					<td><label for='content'> comment:</label></td>
-					<td><textarea id='content' rows='10' cols='48' name='content'></textarea></td>
+					<td><textarea id='content' rows='10' cols='48' name='content'
+					    >{{content}}</textarea></td>
 				</tr>
 			</table>
 			<input type='submit'value='gave the comment'>

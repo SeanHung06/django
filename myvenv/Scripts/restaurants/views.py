@@ -27,18 +27,25 @@ def comment(request,id):
         r=Restaurant.objects.get(id=id)
     else:
         return HttpResponseRedirect('/restaurants_list/')
+    errors =[]
     if request.POST:
         visitor=request.POST['visitor']
         content=request.POST['content']
         email=request.POST['email']
         date_time=timezone.localtime(timezone.now())
-        Comment.objects.create(
+        if any(not request.POST[k] for k in request.POST):
+            errors.append('*there is blank comment')
+        if '@' not in email:
+            errors.append('*email format is not correct')
+        if not errors:
+            Comment.objects.create(
                 visitor=visitor,
                 email=email,
                 content=content,
                 date_time=date_time,
                 restaurant=r
-        )
+            )
+            visitor,email,content=('','','')
     return render_to_response('comments.html',RequestContext(request,locals()))
 
 
